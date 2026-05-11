@@ -4,17 +4,14 @@ from deep_translator import GoogleTranslator
 import time
 import re
 import nltk
+import streamlit as st
 from nltk.corpus import stopwords
 from Sastrawi.Stemmer.StemmerFactory import StemmerFactory
 
 # ================= KONEKSI =================
 conn = psycopg2.connect(
-    host="localhost",
-    database="db_rekomendasi_dosen",
-    user="postgres",
-    password="12345"
+    st.secrets["DATABASE_URL"]
 )
-
 cur = conn.cursor()
 
 # ================= DETEKSI BAHASA =================
