@@ -32,6 +32,7 @@ def translate_to_indonesia(text, lang):
 
 # ================= PREPROCESS =================
 nltk.download('punkt')
+nltk.download('punkt_tab')
 nltk.download('stopwords')
 
 factory = StemmerFactory()
