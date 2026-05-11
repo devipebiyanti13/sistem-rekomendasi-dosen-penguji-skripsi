@@ -1,7 +1,7 @@
-import psycopg
+import psycopg2
 
 def get_connection():
-    conn = psycopg.connect(
+    conn = psycopg2.connect(
         host="localhost",
         database="db_rekomendasi_dosen",
         user="postgres",
