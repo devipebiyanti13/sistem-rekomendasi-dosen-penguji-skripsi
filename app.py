@@ -326,75 +326,75 @@ elif st.session_state.page == "dashboard_dosen":
 
 
 
-            #     # ================= EVALUASI TAMBAHAN =================
-            #     st.subheader("📊 Evaluasi Tambahan (Bidang Keahlian)")
+                # ================= EVALUASI TAMBAHAN =================
+                st.subheader("📊 Evaluasi Tambahan (Bidang Keahlian)")
 
-            #     from preprocess_bidang_evaluasi import preprocess_bidang, tambah_sinonim
+                from preprocess_bidang_evaluasi import preprocess_bidang, tambah_sinonim
 
-            #     df_bidang = pd.read_csv("Ground Truth _ Bidang Keahlian Dosen.csv", sep=";")
+                df_bidang = pd.read_csv("Ground Truth _ Bidang Keahlian Dosen.csv", sep=";")
 
-            #     bidang_dict = {}
+                bidang_dict = {}
 
-            #     for _, row in df_bidang.iterrows():
-            #         nama = row["nama_dosen"].lower().strip()
-            #         bidang = str(row["bidang_keahlian"])
+                for _, row in df_bidang.iterrows():
+                    nama = row["nama_dosen"].lower().strip()
+                    bidang = str(row["bidang_keahlian"])
 
-            #         bidang = preprocess_bidang(bidang)
-            #         bidang = tambah_sinonim(bidang)
+                    bidang = preprocess_bidang(bidang)
+                    bidang = tambah_sinonim(bidang)
 
-            #         bidang_dict[nama] = bidang
+                    bidang_dict[nama] = bidang
 
-            #     # ==== query user ====
-            #     query_text = topik + " " + judul + " " + abstrak
-            #     query_text = preprocess_bidang(query_text)
-            #     query_text = tambah_sinonim(query_text)
+                # ==== query user ====
+                query_text = topik + " " + judul + " " + abstrak
+                query_text = preprocess_bidang(query_text)
+                query_text = tambah_sinonim(query_text)
 
-            #     def get_relevant_dosen(query, bidang_dict):
-            #         relevant = []
+                def get_relevant_dosen(query, bidang_dict):
+                    relevant = []
 
-            #         for dosen, bidang in bidang_dict.items():
-            #             for kata in query.split():
-            #                 if kata in bidang:
-            #                     relevant.append(dosen)
-            #                     break
+                    for dosen, bidang in bidang_dict.items():
+                        for kata in query.split():
+                            if kata in bidang:
+                                relevant.append(dosen)
+                                break
 
-            #         return relevant
+                    return relevant
 
-            #     ground_truth_bidang = get_relevant_dosen(query_text, bidang_dict)
+                ground_truth_bidang = get_relevant_dosen(query_text, bidang_dict)
 
-            #     # COSINE
-            #     p_cb, r_cb, n_cb = hitung_metrik(
-            #         rekomendasi_cosine,
-            #         ground_truth_bidang,
-            #         k=10
-            #     )
+                # COSINE
+                p_cb, r_cb, n_cb = hitung_metrik(
+                    rekomendasi_cosine,
+                    ground_truth_bidang,
+                    k=10
+                )
 
-            #     # JACCARD
-            #     p_jb, r_jb, n_jb = hitung_metrik(
-            #         rekomendasi_jaccard,
-            #         ground_truth_bidang,
-            #         k=10
-            #     )
+                # JACCARD
+                p_jb, r_jb, n_jb = hitung_metrik(
+                    rekomendasi_jaccard,
+                    ground_truth_bidang,
+                    k=10
+                )
 
-            #     st.markdown("### Cosine Similarity")
-            #     col1, col2, col3 = st.columns(3)
-            #     col1.metric("Precision@10 (Bidang)", f"{p_cb:.3f}")
-            #     col2.metric("Recall@10 (Bidang)", f"{r_cb:.3f}")
-            #     col3.metric("NDCG@10 (Bidang)", f"{n_cb:.3f}")
+                st.markdown("### Cosine Similarity")
+                col1, col2, col3 = st.columns(3)
+                col1.metric("Precision@10 (Bidang)", f"{p_cb:.3f}")
+                col2.metric("Recall@10 (Bidang)", f"{r_cb:.3f}")
+                col3.metric("NDCG@10 (Bidang)", f"{n_cb:.3f}")
 
-            #     st.markdown("### Jaccard Similarity")
-            #     col1, col2, col3 = st.columns(3)
-            #     col1.metric("Precision@10 (Bidang)", f"{p_jb:.3f}")
-            #     col2.metric("Recall@10 (Bidang)", f"{r_jb:.3f}")
-            #     col3.metric("NDCG@10 (Bidang)", f"{n_jb:.3f}")
+                st.markdown("### Jaccard Similarity")
+                col1, col2, col3 = st.columns(3)
+                col1.metric("Precision@10 (Bidang)", f"{p_jb:.3f}")
+                col2.metric("Recall@10 (Bidang)", f"{r_jb:.3f}")
+                col3.metric("NDCG@10 (Bidang)", f"{n_jb:.3f}")
 
-            #     with st.expander("🔍 Detail Evaluasi Bidang"):
-            #         st.write("Ground Truth Bidang:", ground_truth_bidang)
-            #         st.write("Rekomendasi Cosine:", rekomendasi_cosine)
-            #         st.write("Rekomendasi Jaccard:", rekomendasi_jaccard)
+                with st.expander("🔍 Detail Evaluasi Bidang"):
+                    st.write("Ground Truth Bidang:", ground_truth_bidang)
+                    st.write("Rekomendasi Cosine:", rekomendasi_cosine)
+                    st.write("Rekomendasi Jaccard:", rekomendasi_jaccard)
 
-            # else:
-            #     st.warning("Tidak ada dosen pada prodi yang dipilih.")
+            else:
+                st.warning("Tidak ada dosen pada prodi yang dipilih.")
 
 
 
